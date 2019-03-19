@@ -3,6 +3,7 @@ from time import time
 from flask_caching.backends.base import BaseCache
 
 import dill as pickle
+from pickle import PickleError
 
 
 class SimpleCache(BaseCache):
