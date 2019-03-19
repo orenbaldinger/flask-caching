@@ -2,10 +2,7 @@ from time import time
 
 from flask_caching.backends.base import BaseCache
 
-try:
-    import cPickle as pickle
-except ImportError:  # pragma: no cover
-    import pickle
+import dill as pickle
 
 
 class SimpleCache(BaseCache):
