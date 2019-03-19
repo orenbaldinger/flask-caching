@@ -3,7 +3,6 @@ from time import time
 from flask_caching.backends.base import BaseCache
 
 import dill as pickle
-from pickle import PickleError
 
 
 class SimpleCache(BaseCache):
@@ -52,7 +51,7 @@ class SimpleCache(BaseCache):
             expires, value = self._cache[key]
             if expires == 0 or expires > time():
                 return pickle.loads(value)
-        except (KeyError, pickle.PickleError):
+        except (KeyError, pickle.PicklingError, pickle.UnpicklingError):
             return None
 
     def set(self, key, value, timeout=None):
